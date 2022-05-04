@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import MainScreen from './Main'
-
+import { Alert } from 'react-native'
 const Main = () => {
   const matrix = [
     ["", "", ""],
@@ -28,9 +28,6 @@ const Main = () => {
   };
 
   useEffect(() => {
-    (turn === 10) 
-    ? setDraw()
-    :
     checkWinner();
   }, activePlayer);
 
@@ -52,6 +49,7 @@ const Main = () => {
         console.log('rows')
         Alert.alert(` ${winner.toUpperCase()} WINS!`);
         onRefresh();
+        return;
       }
     });
     //columns
@@ -65,6 +63,7 @@ const Main = () => {
         console.log('columns')
         Alert.alert(` ${winner.toUpperCase()} WINS!`);
         onRefresh();
+        return;
       }
     }
     //diagonals
@@ -77,6 +76,7 @@ const Main = () => {
         console.log('diagonals')
         Alert.alert(` ${winner.toUpperCase()} WINS!`);
         onRefresh();
+        return;
       }
       if (
         playground[0][2] === playground[1][1] &&
@@ -87,11 +87,14 @@ const Main = () => {
         console.log('diagonals')
         Alert.alert(` ${winner.toUpperCase()} WINS!`);
         onRefresh();
+        return;
       }
+
+      (turn === 10) && setDraw()
   };
 
   return (
-    <MainScreen onPlayerClick={onPlayerClick} onRefresh={onRefresh} activePlayer={activePlayer}/>
+    <MainScreen onPlayerClick={onPlayerClick} onRefresh={onRefresh} activePlayer={activePlayer} playground={playground}/>
   )
 }
 

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { View, Text, TouchableOpacity, Image, Alert } from "react-native";
 import styles from "./styles";
 
-const MainScreen = ({onPlayerClick, onRefresh, activePlayer}) => {
+const MainScreen = ({onPlayerClick, onRefresh, activePlayer, playground}) => {
 
   const renderRow = (row, rowIndex) => {
     return <View style={styles.row}>{renderBlock(row, rowIndex)}</View>;
